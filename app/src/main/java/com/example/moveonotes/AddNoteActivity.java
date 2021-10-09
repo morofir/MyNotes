@@ -191,7 +191,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 else
                 {
                     takePic();
-                }//
+                }//todo
 
             }
         });
