@@ -13,10 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.moveonotes.views.FragmentNoteList;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -139,7 +139,7 @@ public class ShowNoteFragment extends Fragment implements View.OnClickListener {
                             Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new FragmentNoteList()).addToBackStack("f3").commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new FragmentNoteList()).commit();
 
 
                 }catch (Exception e){Log.e("e",e.getMessage());}

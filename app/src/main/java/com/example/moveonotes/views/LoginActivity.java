@@ -123,11 +123,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void sendToRegister() {
-        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-        startActivity(intent);
-        finish();
-    }
+
 
     private void initiateView() {
         showPassword = findViewById(R.id.showpass_cb);

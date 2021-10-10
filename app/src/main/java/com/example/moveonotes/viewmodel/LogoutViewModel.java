@@ -6,17 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.moveonotes.model.AppRepository;
+import com.example.moveonotes.model.LoginAppRepository;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LogoutViewModel extends AndroidViewModel {
-    private AppRepository appRepository;
+    private LoginAppRepository loginAppRepository;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
     private MutableLiveData<Boolean> LoggedOutLiveData;
 
 
     public void logOut(){
-        appRepository.logOut();
+        loginAppRepository.logOut();
     }
 
     public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
@@ -37,9 +37,9 @@ public class LogoutViewModel extends AndroidViewModel {
 
     public LogoutViewModel(@NonNull Application application) {
         super(application);
-        appRepository = new AppRepository(application);
-        userMutableLiveData = appRepository.getUserMutableLiveData();
-        LoggedOutLiveData = appRepository.getLoggedOutuserMutableLiveData();
+        loginAppRepository = new LoginAppRepository(application);
+        userMutableLiveData = loginAppRepository.getUserMutableLiveData();
+        LoggedOutLiveData = loginAppRepository.getLoggedOutuserMutableLiveData();
     }
 
 

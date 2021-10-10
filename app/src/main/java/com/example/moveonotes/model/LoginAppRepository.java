@@ -28,76 +28,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppRepository {
+public class LoginAppRepository {
     private Application application;
     private FirebaseAuth firebaseAuth;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
-    private static AppRepository instance;
-    private ArrayList<NoteObject> dataset = new ArrayList<>();
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    DatabaseReference databaseReference;
 
-
-
-    public AppRepository() {
+    public LoginAppRepository() {
 
     }
 
-    //singleton pattern
-    public static AppRepository getInstance(){
-        if (instance == null){
-            instance = new AppRepository();
-        }
-        return instance;
-    }
-
-    public MutableLiveData<List<NoteObject>> getNotesList(){
-        setNotesList();//get data from firebase
-        MutableLiveData<List<NoteObject>> data = new MutableLiveData<>();
-        data.setValue(dataset);
-
-        return data;
-    }
-    private void setNotesList(){
-        //adding to data base if it were from server (firebase)
-        try {
-            String uid = user.getUid();
-
-            FirebaseDatabase database = FirebaseDatabase.getInstance("https://moveonotes-default-rtdb.europe-west1.firebasedatabase.app/");// europe server require link
-
-            databaseReference = database.getReference("notes");
-            //this function loads notes per user from firebase:
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                    for (DataSnapshot dataSnapshot : snapshot.child(uid).getChildren()) { //fetch every user
-
-                        String title = (String) dataSnapshot.child("title").getValue();
-                        String body = (String) dataSnapshot.child("textBody").getValue();
-                        String time = (String) dataSnapshot.child("currentTime").getValue();
-                        String date = (String) dataSnapshot.child("currentDate").getValue();
-                        String latitude = (String) dataSnapshot.child("latitude").getValue();
-                        String longitude = (String) dataSnapshot.child("longitude").getValue();
-                        String photo = (String) dataSnapshot.child("photo").getValue();
-                        NoteObject noteObject = new NoteObject(title, body, date, time,latitude,longitude,photo);
-                        dataset.add(noteObject); //adding to list
-                        Log.e("gfsd",noteObject.getTitle());
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Log.e("e",error.getMessage());
-
-                }
-            });
-        }catch (Exception e){
-            Log.e("e",e.getMessage());
-        }
-
-    }
 
     public MutableLiveData<Boolean> getLoggedOutuserMutableLiveData() {
         return loggedOutuserMutableLiveData;
@@ -110,7 +49,7 @@ public class AppRepository {
     //should know nothing about view and how it presents info to user
     //apiService in model also (if there is)
 
-    public AppRepository(Application application){
+    public LoginAppRepository(Application application){
         this.application = application;
         firebaseAuth = firebaseAuth.getInstance();
         userMutableLiveData = new MutableLiveData<>();

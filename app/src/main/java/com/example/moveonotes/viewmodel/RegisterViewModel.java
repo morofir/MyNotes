@@ -1,7 +1,6 @@
 package com.example.moveonotes.viewmodel;
 
 import android.app.Application;
-import android.content.Intent;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -9,13 +8,11 @@ import androidx.annotation.RequiresApi;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.moveonotes.model.AppRepository;
-import com.example.moveonotes.views.LoginActivity;
-import com.example.moveonotes.views.MainActivity;
+import com.example.moveonotes.model.LoginAppRepository;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterViewModel extends AndroidViewModel {
-    private AppRepository appRepository;
+    private LoginAppRepository loginAppRepository;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
 
 
@@ -24,13 +21,13 @@ public class RegisterViewModel extends AndroidViewModel {
 
     public RegisterViewModel(@NonNull Application application) {
         super(application);
-        appRepository = new AppRepository(application);
-        userMutableLiveData = appRepository.getUserMutableLiveData();
+        loginAppRepository = new LoginAppRepository(application);
+        userMutableLiveData = loginAppRepository.getUserMutableLiveData();
 
     }
     @RequiresApi(api = Build.VERSION_CODES.P)
     public void register(String email, String password,String confirmPassword){
-        appRepository.register(email,password,confirmPassword);
+        loginAppRepository.register(email,password,confirmPassword);
     }
 
 

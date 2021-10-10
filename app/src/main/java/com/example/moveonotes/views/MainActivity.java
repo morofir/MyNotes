@@ -4,25 +4,24 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.moveonotes.FragmentNoteList;
 import com.example.moveonotes.FragmentNoteMap;
 import com.example.moveonotes.R;
 import com.example.moveonotes.viewmodel.LogoutViewModel;
-import com.example.moveonotes.viewmodel.RegisterViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -104,7 +103,7 @@ public class MainActivity extends AppCompatActivity  {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(onNav);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new FragmentNoteList()).addToBackStack("f1").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new FragmentNoteList()).commit();
 
     }
 
@@ -131,7 +130,8 @@ public class MainActivity extends AppCompatActivity  {
                 break;
 
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,selected).addToBackStack("f0").commit();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,selected).commit();
         return true;
     };
 

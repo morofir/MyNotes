@@ -42,12 +42,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         //sort notes by date
-        Collections.sort(noteList, new Comparator<NoteObject>() {
-            @Override
-            public int compare(NoteObject o1, NoteObject o2) {
-                return o2.getCurrentDate().compareTo(o1.getCurrentDate());
-            }
-        });
+        Collections.sort(noteList, (o1, o2) -> o2.getCurrentDate().compareTo(o1.getCurrentDate()));
 
         return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view,parent,false));
     }
@@ -83,7 +78,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> 
                 showNoteFragment.setArguments(bundle);
 
                 ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout,showNoteFragment).addToBackStack("f5").commit();
+                        .replace(R.id.frame_layout,showNoteFragment).commit();
             }
         });
 
