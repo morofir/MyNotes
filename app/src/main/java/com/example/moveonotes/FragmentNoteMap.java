@@ -42,7 +42,7 @@ public class FragmentNoteMap  extends Fragment {
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) { //TODO: MVVM FRAGMENT NOTE MAP
         super.onCreate(savedInstanceState);
         String uid = user.getUid();
 
@@ -159,7 +159,7 @@ public class FragmentNoteMap  extends Fragment {
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             public void run() {
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,showNoteFragment).addToBackStack("f2").commit();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,showNoteFragment).commit();
 
                             }
                         }, 5000); //open note after 5 second (2 seconds after zooming)

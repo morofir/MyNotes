@@ -46,12 +46,11 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        logoutViewModel = new ViewModelProvider(this).get(LogoutViewModel.class);
+
         auth = FirebaseAuth.getInstance();
         initiateViews();
 
-
-
-        logoutViewModel = new ViewModelProvider(this).get(LogoutViewModel.class);
 
 
         //view handle
@@ -125,13 +124,10 @@ public class MainActivity extends AppCompatActivity  {
             case R.id.note_map:
                 selected = new FragmentNoteMap();
                 welcomeMsg.setText("Notes Map");
-
-
                 break;
 
         }
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,selected).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,selected).commit(); //UI Changes
         return true;
     };
 

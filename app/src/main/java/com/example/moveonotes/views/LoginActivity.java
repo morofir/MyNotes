@@ -3,7 +3,6 @@ package com.example.moveonotes.views;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
@@ -13,19 +12,15 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 
-import com.example.moveonotes.ForgotPasswordActivity;
 import com.example.moveonotes.R;
 import com.example.moveonotes.viewmodel.LoginViewModel;
-import com.example.moveonotes.viewmodel.RegisterViewModel;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         showPassword.setChecked(false);
-        passEt.setTransformationMethod(PasswordTransformationMethod.getInstance()); //first will show password as ***
+        passEt.setTransformationMethod(PasswordTransformationMethod.getInstance()); //first will show password as *** (UI)
 
         showPassword.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -73,20 +68,17 @@ public class LoginActivity extends AppCompatActivity {
 
             } else {
                 passEt.setTransformationMethod(PasswordTransformationMethod.getInstance());
-
-
             }
         });
 
-        forgotPasswordTv.setOnClickListener(new View.OnClickListener() {
+        forgotPasswordTv.setOnClickListener(new View.OnClickListener() {  //todo in viewmodel not view
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
-
             }
         });
 
-        RegisterButton.setOnClickListener(new View.OnClickListener() {
+        RegisterButton.setOnClickListener(new View.OnClickListener() { //todo in viewmodel not view
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
@@ -97,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //if Enter pressed will login
-        passEt.setOnKeyListener(new View.OnKeyListener() {
+        passEt.setOnKeyListener(new View.OnKeyListener() { //todo in viewmodel not view
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // If the event is a key-down event on the "enter" button
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
@@ -109,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {  //todo in viewmodel not view
             @RequiresApi(api = Build.VERSION_CODES.P)
             @Override
             public void onClick(View v) {

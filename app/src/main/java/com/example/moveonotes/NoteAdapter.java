@@ -25,7 +25,7 @@ import java.util.List;
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> implements Filterable {
     Context context;
     List<NoteObject> noteList;
-    List<NoteObject> notesAll;
+    List<NoteObject> notesAll = new ArrayList<>();
 
 
 
@@ -33,6 +33,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> 
         this.context = context;
         this.noteList = noteList;
         this.notesAll = new ArrayList<>(noteList);
+
     }
 
 
@@ -42,7 +43,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         //sort notes by date
-        Collections.sort(noteList, (o1, o2) -> o2.getCurrentDate().compareTo(o1.getCurrentDate()));
+//        Collections.sort(noteList, (o1, o2) -> o2.getCurrentDate().compareTo(o1.getCurrentDate()));
 
         return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view,parent,false));
     }
@@ -87,6 +88,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
+
         return noteList.size();
     }
 

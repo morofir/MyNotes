@@ -17,13 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".ForgotPasswordActivity"></activity>
+        <activity android:name=".views.ForgotPasswordActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDAYRkfG_4XZjAmGk_V40-VsNmobABW20M" />
 
-        <activity android:name=".AddNoteActivity"
+        <activity android:name=".views.AddNoteActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity android:name=".views.RegisterActivity" />
         <activity

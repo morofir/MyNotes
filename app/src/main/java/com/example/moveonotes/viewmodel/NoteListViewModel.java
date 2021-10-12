@@ -31,7 +31,6 @@ public class NoteListViewModel extends AndroidViewModel {
         }
         repository = NoteListRepository.getInstance();
         NoteList = repository.getNotesList(); //retrieve list from repo
-
     }
 
     public LiveData<List<NoteObject>> getNoteList(){ //mutable live data is sub class of live data

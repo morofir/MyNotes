@@ -1,6 +1,8 @@
 package com.example.moveonotes;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +31,6 @@ import com.google.firebase.database.ValueEventListener;
 public class ShowNoteFragment extends Fragment implements View.OnClickListener {
     EditText noteTitle, noteText;
     TextView noteTime;
-    View view;
     Button updateNote, deleteNote;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     ImageView imageView;
@@ -39,6 +40,8 @@ public class ShowNoteFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
     }
+
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -79,6 +82,7 @@ public class ShowNoteFragment extends Fragment implements View.OnClickListener {
         return view;
 
     }
+
 
     @Override
     public void onClick(View v) {
@@ -126,12 +130,12 @@ public class ShowNoteFragment extends Fragment implements View.OnClickListener {
                                 if(!noteText.getText().toString().isEmpty() && !noteTitle.getText().toString().isEmpty()) {
                                     snap.getRef().child("textBody").setValue(noteText.getText().toString()); // updating the node in firebase
                                     snap.getRef().child("title").setValue(noteTitle.getText().toString());
-                                    Toast.makeText(getContext(), "Note Updated/Saved", Toast.LENGTH_SHORT).show();
-
                                 }
+
                                 else
                                     Toast.makeText(getContext(), "NOT UPDATED: Must submit Note Title and Body", Toast.LENGTH_LONG).show();
                             }
+
                         }
 
                         @Override

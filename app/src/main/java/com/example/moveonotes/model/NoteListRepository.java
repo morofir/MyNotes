@@ -29,7 +29,7 @@ public class NoteListRepository {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference databaseReference;
-    MutableLiveData<List<NoteObject>> data;
+    MutableLiveData<List<NoteObject>> data = new MutableLiveData<>();
 
 
 
@@ -43,13 +43,12 @@ public class NoteListRepository {
     }
 
     public MutableLiveData<List<NoteObject>> getNotesList(){
-        data = new MutableLiveData<>(dataSet);
-
         setNotesList(); //get data from firebase
-        Log.e("size1", String.valueOf(dataSet.size()));
+
+        Log.e("this size should be dif then 0", String.valueOf(dataSet.size()));
 
 
-//        data.setValue(dataSet);
+        data.setValue(dataSet);
 
         return data;
     }
@@ -68,6 +67,8 @@ public class NoteListRepository {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     List<NoteObject> noteList = new ArrayList<>();
+//                    dataSet.clear();
+//                    data.setValue(null);
 
                     for (DataSnapshot dataSnapshot : snapshot.child(uid).getChildren()) { //fetch every user
 
@@ -81,7 +82,8 @@ public class NoteListRepository {
                         NoteObject noteObject = new NoteObject(title, body, date, time,latitude,longitude,photo);
                         dataSet.add(noteObject); //adding to list
                     }
-                    data.setValue(dataSet);
+
+                    data.postValue(dataSet); //todo
 
                     Log.e("size2", String.valueOf(dataSet.size()));
 
